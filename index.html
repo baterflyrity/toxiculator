@@ -1,19 +1,351 @@
 <!DOCTYPE>
 <html>
 <head>
-    <style>
-        body {
-            margin: 0;
-        }
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+			integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	<link href="jquery-ui.min.css" rel="stylesheet">
+	<script src="jquery-ui.min.js"></script>
+	<style>
+		body {
+			margin: 0;
+			overflow: hidden;
+			color: #9AA2A6;
+			text-shadow: 2px 2px 5px #000000;
+			font-size: 22px;
+			line-height: 37px;
+		}
 
-        #background > div {
-            background-image: url("https://dota2hq.eu/wallpaper/dota2hq.eu-zeus-wallpaper-pride-of-olympus-1920x1080.jpg");
-        } 
-    </style>
+		#background > div {
+			background-image: url("https://dota2hq.eu/wallpaper/dota2hq.eu-zeus-wallpaper-pride-of-olympus-1920x1080.jpg");
+			width: 100%;
+			height: 100%;
+			background-size: cover;
+			background-position: center;
+		}
+
+		#dialogs > div {
+			display: none;
+			opacity: 0.95;
+			padding: 2%;
+			width: 50%;
+			min-height: 48%;
+			position: fixed;
+			left: 24%;
+			top: 25%;
+			background: black;
+			background-position: center;
+			text-align: center;
+			box-shadow: 0 0 5px 1px black;
+			background-size: cover;
+			background-image: url(http://cdn.dota2.com/apps/dota2/images/blog/play/bg_03.jpg);
+		}
+
+		.header {
+			color: #A69E99;
+		}
+
+		.big {
+			font-size: 3em;
+		}
+
+		.info {
+			color: #707475;
+			font-size: 20px;
+			font-style: italic;
+		}
+
+		.button {
+			cursor: pointer;
+			text-transform: uppercase;
+			background-color: #111C26;
+			border: 1px solid #336391;
+			border-radius: 3px;
+			width: 305px;
+			height: 51px;
+			display: inline-block;
+			line-height: 51px;
+			text-shadow: 2px 2px 5px #000000;
+			color: #4585C3;
+			letter-spacing: 5px;
+			-webkit-text-stroke: 0.2px;
+			text-stroke: 0.2px;
+			text-align: center;
+			font-size: 16px;
+			-o-transition: .3s;
+			-ms-transition: .3s;
+			-moz-transition: .3s;
+			-webkit-transition: .3s;
+			transition: .3s;
+			-webkit-box-shadow: 0px 3px 12px 0px rgba(0, 0, 0, 0.75);
+			-moz-box-shadow: 0px 3px 12px 0px rgba(0, 0, 0, 0.75);
+			box-shadow: 0px 3px 12px 0px rgba(0, 0, 0, 0.75);
+			text-decoration: none;
+		}
+
+		.button:hover {
+			-webkit-transition: none;
+			-moz-transition: none;
+			-o-transition: none;
+			transition: none;
+			background-color: #263f56;
+			color: #5595D3;
+			border: 1px solid #3A73A3;
+			-o-transition: .3s;
+			-ms-transition: .3s;
+			-moz-transition: .3s;
+			-webkit-transition: .3s;
+			transition: .3s;
+			text-decoration: none;
+		}
+
+		.negative {
+			color: #AAA !important;
+			border: 1px solid #A69E99 !important;
+		}
+
+		.negative:hover {
+			color: white !important;
+			background-color: #555 !important;
+			border: 1px solid #9AA2A6 !important;
+		}
+
+		input {
+			border: 0;
+			border-radius: 25px;
+			width: 100px;
+			text-align: center;
+			background-color: #383C3D;
+			color: #969aa1;
+			font-size: 16pt;
+			outline: none;
+			box-shadow: inset 0 0 2px rgb(0, 0, 0);
+			-moz-box-shadow: inset 0 0 2px rgb(0, 0, 0);
+			-webkit-box-shadow: inset 0 0 2px rgb(0, 0, 0);
+		}
+
+		input::selection {
+			background: #000000;
+		}
+
+		input::-moz-selection {
+			background: #000000;
+		}
+
+		th {
+			background-color: #000000;
+			color: #b7b7b4;
+			line-height: 16px;
+			font-size: 14px;
+		}
+
+		td {
+			color: #a4a4a4;
+		}
+	</style>
 </head>
 <body>
+
+
 <div id="background">
-    <div></div>
+	<div></div>
 </div>
+<div id="dialogs">
+	<div class="d2">
+		<h1 class="header">Оценка команды</h1>
+		<p>В вашей команде были люди, которые специально на зло вам или вашим союзникам фидели, руинили или ливнули?</p>
+		<a class="negative button" onclick="TR=1;Go(2,6)">Да</a>
+		<a class="button" onclick="Go(2,3)">Нет</a>
+	</div>
+	<div class="d3">
+		<h1 class="header">Оценка команды</h1>
+		<p>Ваши союзники абсолютно не умели играть? Они не видели ничего вокруг себя, что происходит на карте? Они афк
+			фармили лес или линии? У них не было понимания игры, драк? Они засоряли чат?</p>
+		<a class="negative button" onclick="TR=2;Go(3,6)">Да</a>
+		<a class="button" onclick="Go(3,4)">Нет</a>
+	</div>
+	<div class="d4">
+		<h1 class="header">Оценка команды</h1>
+		<p>Вы играли за слабую команду, которая не могла собраться или не имела никакой тактики, сделала безыдейный пик?
+			Ваши союзники часто совершали ошибки? Они пытались победить, но им не хватало профессионализма? Вам
+			приходилось следить за всеми, подсказывать билды и позиционирование?</p>
+		<a class="negative button" onclick="TR=3;Go(4,6)">Да</a>
+		<a class="button" onclick="Go(4,5)">Нет</a>
+	</div>
+	<div class="d5">
+		<h1 class="header">Оценка команды</h1>
+		<p>В играли с отличными любителями или профессионалами, которые понимают суть этой игры? Ваши союзники редко
+			совершали ошибки? Они обсуждали тактику и стратегию до и во время матча? В команде был хороший уровень
+			коммуникации и взаимопонимания?</p>
+		<a class="button" onclick="TR=5;Go(5,6)">Да</a>
+		<a class="negative button" onclick="Go(5,6)">Нет</a>
+	</div>
+	<div class="d6">
+		<h1 class="header">Длительность</h1>
+		<p>Сколько времени длилась игра?</p>
+		<input type="text" value="32" id="minutes"> минут(ы) <input type="text" value="12" id="seconds">
+		секунд(ы)<br><br>
+		<a class="button" onclick="if(Validate($('#minutes'),1,1000)&&Validate($('#seconds'),0,59)) Go(6,7);">Далее</a>
+	</div>
+	<div class="d7">
+		<h1 class="header">Поддержка</h1>
+		<p>Какое количество саппортов было в команде, основываясь на поведении ваших союзников в течение матча?</p>
+		<input type="text" value="2" id="supports"><br><br>
+		<a class="button" onclick="if(Validate($('#supports'),0,5)) Go(7,8);">Далее</a>
+	</div>
+	<div class="d8">
+		<h1 class="header">Поддержка</h1>
+		<p>Сколько денег суммарно ваша команда потратила на варды, дасты, курьер и прочие расходники?</p>
+		<input type="text" value="3000" id="consumables"><br><br>
+		<a class="button" onclick="if(Validate($('#consumables'),0,500000)) Go(8,9);">Далее</a>
+	</div>
+	<div class="d9">
+		<h1 class="header">Общение</h1>
+		<p>Сколько важных моментов было в вашей игре?</p>
+		<input type="text" value="12" id="moments">
+		<p class="info">К важным моментам относятся ганки, драки, защита рошпита и т.п.
+			Их можно посчитать по количеству изломов в кривой нетворса.</p>
+		<a class="button" onclick="if(Validate($('#moments'),0,100)) Go(9,10);">Далее</a>
+	</div>
+	<div class="d10">
+		<h1 class="header">Общение</h1>
+		<p>Какой процент важных моментов сопровождался позитивным общением с союзниками или противниками?</p>
+		<input type="text" value="75" id="positive"><br><br>
+		<a class="button" onclick="if(Validate($('#positive'),0,100)) Go(10,11);">Далее</a>
+	</div>
+	<div class="d11">
+		<h1 class="header">Общение</h1>
+		<p>Какой процент важных моментов сопровождался негативным общением с союзниками или противниками?</p>
+		<input type="text" value="75" id="negative"><br><br>
+		<a class="button" onclick="if(Validate($('#negative'),0,100)) Go(11,12);">Далее</a>
+	</div>
+	<div class="d12">
+		<h1 class="header">Эффективность</h1>
+		<p>Сколько убийств и помощи суммарно ваша команда заработала за матч?</p>
+		<input type="text" value="82" id="ka"><br><br>
+		<a class="button" onclick="if(Validate($('#ka'),0,500)) Go(12,13);">Далее</a>
+	</div>
+	<div class="d13">
+		<h1 class="header">Эффективность</h1>
+		<p>Сколько раз суммарно вы и ваши союзники умерли за игру?</p>
+		<input type="text" value="38" id="d"><br><br>
+		<a class="button" onclick="if(Validate($('#d'),0,500)) {Calculate();Go(13,14);}">Узнать токсичнсть</a>
+	</div>
+
+	<div class="d14">
+		<h1 class="header">Токсичность</h1>
+		<p>Токсичность вашего матча составляет:</p>
+		<h1 class="big" id="result">-16.12</h1>
+		<a class="button" onclick="Go(14,2)">Новый матч</a><br><br>
+		<h3>История матчей</h3>
+		<table border="2" bordercolor="#3b3a38" cellspacing="0" cellpadding="0" width="100%">
+			<tr class="label">
+				<th valign="middle" align="center">День</th>
+				<th valign="middle" align="center">Время</th>
+				<th valign="middle" align="center">Токсичность</th>
+				<th valign="middle" align="center">KDA</th>
+				<th valign="middle" align="center">Поддержка</th>
+				<th valign="middle" align="center">Адекватность</th>
+				<th valign="middle" align="center">Общение</th>
+			</tr>
+
+		</table>
+	</div>
+	<div class="d1">
+		<h1 class="header">Токсикулятор</h1>
+		<p>Добро пожаловать в токсикулятор! С помощью него вы сможете измерить уровень токсичности вашего матча на
+			основе своей собственной оценки и статистических данных игрового
+			сооющества. Токсичность показывает уровень удовольствия, полученного от того или иного матча, позволяя их
+			сравнивать с точки зрения развлечения, а не профессионализма. Чем выше уровень токсичности, тем хуже прошла
+			ваша игра. Высокое значение данного показателя указывает на низкий уровень командной игры. Токсичность
+			"стандартного" матча нулевая.</p>
+		<a class="button" onclick="TR=4;Go(1,2)">Начать</a><br><br>
+		<h3>История матчей</h3>
+		<table border="2" bordercolor="#3b3a38" cellspacing="0" cellpadding="0" width="100%">
+			<tr class="label">
+				<th valign="middle" align="center">День</th>
+				<th valign="middle" align="center">Время</th>
+				<th valign="middle" align="center">Токсичность</th>
+				<th valign="middle" align="center">KDA</th>
+				<th valign="middle" align="center">Поддержка</th>
+				<th valign="middle" align="center">Адекватность</th>
+				<th valign="middle" align="center">Общение</th>
+			</tr>
+
+		</table>
+	</div>
+</div>
+
+
+<script>
+
+	let data = [];
+	let TR = 4;
+	$(function () {
+		if (localStorage['data'])
+			data = JSON.parse(localStorage['data']);
+		$('#dialogs>.d1').show();
+	});
+
+	function Save() {
+		localStorage.setItem('data', JSON.stringify(data));
+	}
+
+	function Go(current, next) {
+		$('#dialogs>.d' + current).hide('explode');
+		$('#dialogs>.d' + next).show('fade');
+	}
+
+	function Validate($input, min, max) {
+		let x = parseFloat($input.val());
+		let result = function () {
+			if (!x && x != 0) return false;
+			if (x % 1 != 0) return false;
+			if (x < min || x > max) return false;
+			return true;
+		}();
+		$input.css('background-color', result ? '#383C3D' : '#4c2e2e');
+		return result;
+	}
+
+	function Calculate() {
+		let ka = parse('ka');
+		let d = parse('d');
+		let p = parse('positive');
+		let n = parse('negative');
+		let m = parse('moments');
+		let c = parse('consumables');
+		let min = parse('minutes');
+		let sec = parse('seconds');
+		let s = parse('supports');
+		if (ka == 0) ka = 1;
+		if (d == 0) d = 1;
+		if (m == 0) m = 1;
+		p = parseInt(m * p / 100);
+		if (p == 0) p = 1;
+		n = parseInt(m * n / 100);
+		if (n == 0) n = 1;
+		if (c == 0) c = 1;
+		let time = min + sec / 60;
+		if (s == 0) s = 5;
+
+		let toxic = -10 * Math.log10((ka * p * c * TR) / (400 * d * n * m * time * s));
+		toxic = toxic.toFixed(2);
+		$('#result').html(toxic);
+	}
+
+	function parse(id) {
+		return parseInt($('#' + id).val());
+	}
+
+	function ConstructTables() {
+		if (data.length === 0) return;
+		$('table tr').not('.label').remove();
+		for (let i = 0; i < data.length; i++)
+			$('table').append('<tr bgcolor="#' + ((i + 1) % 2 === 0 ? '202020' : '181818') + '"><td align="center">01.05.18</td><td align="center">18:20</td><td align="center">-15.48</td><td align="center">15</td><td align="center">4986</td><td align="center">5</td><td align="center">12</td></tr>');
+	}
+
+</script>
+
+
 </body>
 </html>
