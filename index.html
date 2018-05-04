@@ -1,8 +1,7 @@
 <!DOCTYPE>
 <html>
 <head>
-	<script src="https://code.jquery.com/jquery-3.3.1.min.js"
-			integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	<script src="jquery-3.3.1.min.js"></script>
 	<link href="jquery-ui.min.css" rel="stylesheet">
 	<script src="jquery-ui.min.js"></script>
 	<style>
@@ -13,14 +12,77 @@
 			text-shadow: 2px 2px 5px #000000;
 			font-size: 22px;
 			line-height: 37px;
+			background: black;
+		}
+
+		#background {
+			position: absolute;
+			width: 120%;
+			height: 120%;
 		}
 
 		#background > div {
-			background-image: url("https://dota2hq.eu/wallpaper/dota2hq.eu-zeus-wallpaper-pride-of-olympus-1920x1080.jpg");
+			display: none;
 			width: 100%;
 			height: 100%;
 			background-size: cover;
 			background-position: center;
+		}
+
+		#background > div:nth-child(1) {
+			background-image: url("b1.jpg");
+		}
+
+		#background > div:nth-child(2) {
+			background-image: url("b2.png");
+		}
+
+		#background > div:nth-child(3) {
+			background-image: url("b3.png");
+		}
+
+		#background > div:nth-child(4) {
+			background-image: url("b4.png");
+		}
+
+		#background > div:nth-child(5) {
+			background-image: url("b5.jpg");
+		}
+
+		#background > div:nth-child(6) {
+			background-image: url("b6.jpg");
+		}
+
+		#background > div:nth-child(7) {
+			background-image: url("b7.jpg");
+		}
+
+		#background > div:nth-child(8) {
+			background-image: url("b8.jpg");
+		}
+
+		#background > div:nth-child(9) {
+			background-image: url("b9.jpg");
+		}
+
+		#background > div:nth-child(10) {
+			background-image: url("b10.jpg");
+		}
+
+		#background > div:nth-child(11) {
+			background-image: url("b11.jpg");
+		}
+
+		#background > div:nth-child(12) {
+			background-image: url("b12.jpg");
+		}
+
+		#background > div:nth-child(13) {
+			background-image: url("b13.png");
+		}
+
+		#background > div:nth-child(14) {
+			background-image: url("b14.jpg");
 		}
 
 		#dialogs > div {
@@ -37,7 +99,7 @@
 			text-align: center;
 			box-shadow: 0 0 5px 1px black;
 			background-size: cover;
-			background-image: url(http://cdn.dota2.com/apps/dota2/images/blog/play/bg_03.jpg);
+			background-image: url("back.jpg");
 		}
 
 		.header {
@@ -148,6 +210,19 @@
 
 <div id="background">
 	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
 </div>
 <div id="dialogs">
 	<div class="d2">
@@ -236,19 +311,20 @@
 		<p>Токсичность вашего матча составляет:</p>
 		<h1 class="big" id="result">-16.12</h1>
 		<a class="button" onclick="Go(14,2)">Новый матч</a><br><br>
-		<h3>История матчей</h3>
-		<table border="2" bordercolor="#3b3a38" cellspacing="0" cellpadding="0" width="100%">
-			<tr class="label">
-				<th valign="middle" align="center">День</th>
-				<th valign="middle" align="center">Время</th>
-				<th valign="middle" align="center">Токсичность</th>
-				<th valign="middle" align="center">KDA</th>
-				<th valign="middle" align="center">Поддержка</th>
-				<th valign="middle" align="center">Адекватность</th>
-				<th valign="middle" align="center">Общение</th>
-			</tr>
-
-		</table>
+		<div class="history">
+			<h3>История матчей</h3>
+			<table border="2" bordercolor="#3b3a38" cellspacing="0" cellpadding="0" width="100%">
+				<tr class="label">
+					<th valign="middle" align="center">Дата</th>
+					<th valign="middle" align="center">Время</th>
+					<th valign="middle" align="center">Токсичность</th>
+					<th valign="middle" align="center">KDA</th>
+					<th valign="middle" align="center">Поддержка</th>
+					<th valign="middle" align="center">Адекватность</th>
+					<th valign="middle" align="center">Общение</th>
+				</tr>
+			</table>
+		</div>
 	</div>
 	<div class="d1">
 		<h1 class="header">Токсикулятор</h1>
@@ -259,19 +335,20 @@
 			ваша игра. Высокое значение данного показателя указывает на низкий уровень командной игры. Токсичность
 			"стандартного" матча нулевая.</p>
 		<a class="button" onclick="TR=4;Go(1,2)">Начать</a><br><br>
-		<h3>История матчей</h3>
-		<table border="2" bordercolor="#3b3a38" cellspacing="0" cellpadding="0" width="100%">
-			<tr class="label">
-				<th valign="middle" align="center">День</th>
-				<th valign="middle" align="center">Время</th>
-				<th valign="middle" align="center">Токсичность</th>
-				<th valign="middle" align="center">KDA</th>
-				<th valign="middle" align="center">Поддержка</th>
-				<th valign="middle" align="center">Адекватность</th>
-				<th valign="middle" align="center">Общение</th>
-			</tr>
-
-		</table>
+		<div class="history">
+			<h3>История матчей</h3>
+			<table border="2" bordercolor="#3b3a38" cellspacing="0" cellpadding="0" width="100%">
+				<tr class="label">
+					<th valign="middle" align="center">Дата</th>
+					<th valign="middle" align="center">Время</th>
+					<th valign="middle" align="center">Токсичность</th>
+					<th valign="middle" align="center">KDA</th>
+					<th valign="middle" align="center">Поддержка</th>
+					<th valign="middle" align="center">Адекватность</th>
+					<th valign="middle" align="center">Общение</th>
+				</tr>
+			</table>
+		</div>
 	</div>
 </div>
 
@@ -283,7 +360,20 @@
 	$(function () {
 		if (localStorage['data'])
 			data = JSON.parse(localStorage['data']);
-		$('#dialogs>.d1').show();
+		ConstructTables();
+		$('#dialogs>.d1,#background>div:nth-child(1)').show();
+
+		$('#background').css({
+			'width': ($('body').width() * 31 / 30) + 'px',
+			'height': ($('body').height() * 31 / 30) + 'px',
+		});
+		$(document).on('mousemove', function (e) {
+			$('#background').css({
+				left: -e.pageX / 30,
+				top: -e.pageY / 30
+			});
+		});
+		$(document).trigger('mousemove');
 	});
 
 	function Save() {
@@ -292,7 +382,9 @@
 
 	function Go(current, next) {
 		$('#dialogs>.d' + current).hide('explode');
+		$('#background>div:nth-child(' + current + ')').hide('fade', 'fast');
 		$('#dialogs>.d' + next).show('fade');
+		$('#background>div:nth-child(' + next + ')').show('fade', 'fast');
 	}
 
 	function Validate($input, min, max) {
@@ -331,6 +423,19 @@
 		let toxic = -10 * Math.log10((ka * p * c * TR) / (400 * d * n * m * time * s));
 		toxic = toxic.toFixed(2);
 		$('#result').html(toxic);
+
+		let date = new Date();
+		data.unshift({
+			date: date.getDate() + '.' + (date.getMonth() + 1) + '.' + date.getFullYear(),
+			time: date.getHours() + ':' + date.getMinutes(),
+			toxic: toxic,
+			kda: (ka / d).toFixed(2),
+			support: (c / time).toFixed(2),
+			team: TR,
+			communication: (p / (n * m)).toFixed(2)
+		});
+		ConstructTables();
+		Save();
 	}
 
 	function parse(id) {
@@ -338,10 +443,14 @@
 	}
 
 	function ConstructTables() {
-		if (data.length === 0) return;
+		if (data.length === 0) {
+			$('.history').hide();
+			return;
+		}
+		$('.history').show();
 		$('table tr').not('.label').remove();
 		for (let i = 0; i < data.length; i++)
-			$('table').append('<tr bgcolor="#' + ((i + 1) % 2 === 0 ? '202020' : '181818') + '"><td align="center">01.05.18</td><td align="center">18:20</td><td align="center">-15.48</td><td align="center">15</td><td align="center">4986</td><td align="center">5</td><td align="center">12</td></tr>');
+			$('table').append('<tr bgcolor="#' + ((i + 1) % 2 === 0 ? '202020' : '181818') + '"><td align="center">' + data[i].date + '</td><td align="center">' + data[i].time + '</td><td align="center">' + data[i].toxic + '</td><td align="center">' + data[i].kda + '</td><td align="center">' + data[i].support + '</td><td align="center">' + data[i].team + '</td><td align="center">' + data[i].communication + '</td></tr>');
 	}
 
 </script>
